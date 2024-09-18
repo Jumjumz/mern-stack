@@ -9,6 +9,8 @@ app.get("/", (req, res) => {
     
 });
 
+console.log(process.env.MONGO_URI);
+
 
 app.listen(6969, () => {
     connectDB();
