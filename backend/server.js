@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import Product from "./models/product.model.js";
@@ -26,7 +26,16 @@ app.post("/api/products", async (req, res) => {
     }
 });
 
-console.log(process.env.MONGO_URI);
+app.delete("/api/products/:id", async (req, res) => {
+    const {id} = req.params;
+    
+    try {
+        await Product.findByIdAndDelete(id);
+        res.status(200).json({ success: true, message: "Product deleted"});
+    } catch (error) {
+        
+    }
+});
 
 
 app.listen(6969, () => {
