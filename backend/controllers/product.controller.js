@@ -18,3 +18,14 @@ export const createProduct = async (res, req) => {
         res.status(500).json({ success: false, message: "Server error"});
     }
 }
+
+export const deleteProduct = async (res, req) => {
+    const {id} = req.params;
+    
+    try {
+        await Product.findByIdAndDelete(id);
+        res.status(200).json({ success: true, message: "Product deleted"});
+    } catch (error) {
+        
+    }
+}
